@@ -1,0 +1,12 @@
+extends layouts/layout.pug
+
+block content
+    main.main-container
+        .container
+            form.form-container(action="/admin/add-users", method="POST")
+                .form-label
+                    label(for="user") Enter user
+                .form-input
+                    input(type="text" name="user" title="user")
+                .form-button
+                    button(type="submit") Add User

@@ -8,15 +8,17 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({extended:false}));
+const users = require('./routes/users');
+const adminData = require('./routes/add-users');
 
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')))
 
-const users = require('./routes/users');
-const addUsers = require('./routes/add-users');
-
 app.use( users );
-app.use( '/admin', addUsers );
+app.use( '/admin', adminData.routes );
 
 
 app.listen(3030);

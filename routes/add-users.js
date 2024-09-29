@@ -3,16 +3,19 @@ const path = require('path')
 const express = require('express');
 
 const router = express.Router();
-
 const rootDir = require('../utils/path');
 
+const users = [];
+
 router.get('/add-users', (req, res, next)=>{
-    res.sendFile(path.join(rootDir, 'views', 'add-users.html'))
+    res.render('add-users', {pageTitle: "Add User", path: "/admin/add-users"});
 });
 
 router.post('/add-users', (req, res, next)=>{
     console.log(req.body);
+    users.push({user: req.body.user});
     res.redirect('/');
 })
 
-module.exports = router;
+exports.routes = router;
+exports.users = users;
